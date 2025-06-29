@@ -22,7 +22,7 @@ public class Sudoku2D {
         System.out.println("\n▶ ตรวจสอบคอลัมน์");
         if (!checkCols(sudoku)) hasError = true;
 
-        System.out.println(" /n▶ ตรวจสอบกล่องย่อย 3x3");
+        System.out.println("\n▶ ตรวจสอบกล่องย่อย 3x3");
         if (!checkBoxes(sudoku)) hasError = true;
 
         System.out.println("\n สรุปผล:");
