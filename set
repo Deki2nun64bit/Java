@@ -1,0 +1,24 @@
+package set;
+
+public class Set {
+
+    public static void main(String[] args) {
+        list l = new list();
+        l.add("5");
+        l.add("12");
+        l.add("9");
+        l.add("8");
+        l.add("4");
+        l.add("9");
+        l.show();              
+        l.insert(2, "1");
+        l.show();    
+        l.delete(3);
+        
+    }
+    
+
+           
+    
+}
+
