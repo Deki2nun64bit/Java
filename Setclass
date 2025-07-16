@@ -1,0 +1,55 @@
+package set;
+
+public class Setclass {
+         String arr[];
+   int count;
+   public Setclass(){
+       this(5);
+   }
+       public Setclass(int s){
+           arr = new String[s];
+       }
+   
+
+
+void add(String data) {
+    if (!isDuplicate(data)) {
+        arr[count] = data;
+        count++;
+    }
+}
+    boolean isDuplicate(String st) {
+    String sequence;
+    boolean dup = false;
+    sequence = getAll();
+        if (sequence.contains(st)) {
+            dup = true;
+            
+            return dup; 
+        }
+    return dup;
+}
+    String getAll(){
+        String all= "";
+        if(!(count==0)){
+        for(int i=0;i<count;i++){
+        all = arr[i]+",";
+    }
+}
+        return all;
+    }
+    
+    void show(){
+    for (int i=0; i<count; i++){
+     System.out.print(arr[i]+ " " );
+    }
+    System.out.println();
+}
+    void remove(int x){
+        if(x>=0&&x<count){
+        arr[x]=arr[count-1];
+        count--;
+                
+        }
+        }
+}
