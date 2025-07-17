@@ -1,0 +1,63 @@
+package sudoku2d;
+public class Sudoku2D {
+    public static void main(String[] args) {
+        int[][] sudoku = {
+            {5, 3, 4,  6, 7, 8,  9, 1, 2},
+            {6, 7, 2,  1, 9, 5,  3, 4, 8},
+            {1, 9, 8,  3, 4, 2,  5, 6, 7},
+            
+            {8, 5, 9,  7, 6, 1,  4, 2, 3},
+            {4, 2, 6,  8, 5 ,3, 7, 9,1},
+            {7, 1, 3,  9, 2, 4,  8, 5, 6},
+            
+            {9, 6, 1,  5, 3, 7,  2, 8, 4},
+            {2, 8, 7,  4, 1, 9,  6, 3, 5},
+            {3, 4, 5,  2, 8, 6,  1, 7, 9}
+        };
+        if (checkRow(sudoku) && checkCol(sudoku)) { //เช็คว่า Row col ซ้ำกันหรือไม่
+            System.out.println("✓ WIN");                               // ถ้าไม่ซ้ำ Print Win
+        } else {                                                       // ถ้าซ้ำ Print Lose
+            System.out.println("✕ LOSE");                              
+        }
+    }
+    static boolean checkRow(int[][] sudoku) {           // ประกาศฟังชั่น ชื่อ CheclRow รับพารามิเตอร์ 2มิติ เพื่อเช็ค แถว
+        int[][] count = new int[9][10]; // สร้างอาร์เรย์ 2 มิติชื่อ count ขนาด 9 x 10 
+                                        //เพื่อเก็บจำนวนครั้งที่เลขแต่ละตัว (1–9) ปรากฏในแต่ละแถว
+        for (int i = 0; i < 9; i++) {   //ลูปนี้จะทำให้เราตรวจสอบทุกแถวตั้งแต่แถวบนสุด (0) ถึงแถวล่างสุด (8)
+            for (int j = 0; j < 9; j++) {   //ลูปนี้จะทำให้เราตรวจสอบทุกตำแหน่งในแถวนั้น ๆ
+                int val = sudoku[i][j];     //ในลูปที่วนผ่านทุกช่องเพื่อดึงค่าเลขที่ตำแหน่ง [i][j] มาเก็บในตัวแปร val
+                System.out.print(val);
+                if (val < 1 || val > 9) return false; //เช็คval ต้องเป็นเลขที่อยู่ในช่วง 1 ถึง 9 เท่านั้น
+                count[i][val]++;        //เพิ่มค่าตัวนับในอาร์เรย์ count เพื่อบอกว่าเลข val ปรากฏในแถวที่ i ไปแล้ว 1 ครั้ง
+                if (count[i][val] > 1) return false; // เช็คว่า val ใน แถว i มีตัวเลขซ้ำกัน เกิน 1ตัวหรือไม่
+            }
+        }
+        return true;    // ถ้าไม่มีซ้ำให้คืนท่า true
+    }
+    static boolean checkCol(int[][] sudoku) {
+        int[][] count = new int[9][10]; 
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                int val = sudoku[i][j];
+                if (val < 1 || val > 9) return false;
+                count[j][val]++;
+                if (count[j][val] > 1) return false; // ซ้ำ
+            }
+        }
+        return true;
+    }
+}
+    /*static boolean checkBox(int[][] sudoku) {
+        int[][] count = new int[9][10]; 
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                int val = sudoku[i][j];
+                if (val < 1 || val > 9) return false;
+                int box = (i / 3) * 3 + (j / 3); // (i / 3)*3 คือ การเลื่อนตำแหน่งตามแถวกล่อง
+                count[box][val]++;
+                if (count[box][val] > 1) return false; // ซ้ำ
+            }
+        }
+        return true;
+    }
+}
